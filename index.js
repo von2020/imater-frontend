@@ -70,7 +70,9 @@ app.use('/', routes);
 // app.use('/test', test);
 // app.use('/api', api);
 
-
+app.get("/", (req, res) => {
+    res.status(200).send({message: "Welcome to Immater"});
+})
 //Defining the environment variable and server
 
 var port = process.env.port || 3000;
