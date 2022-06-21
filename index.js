@@ -75,7 +75,8 @@ app.get("/", (req, res) => {
 })
 //Defining the environment variable and server
 
-var port = process.env.port || 3000;
+var port = process.env.PORT || 3000;
+
 
 const server  = app.listen(port, function() {
     const host = server.address().address; // CB i tried to log this server object and could not find this adress method,.. I think this worlds because it is an asynchronous funciton
