@@ -1,0 +1,23 @@
+{
+  "name": "imaterfrontend",
+  "version": "1.0.0",
+  "description": "a business site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yvonne",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "config": "^3.3.7",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "nodemon": "^2.0.16",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
+  }
+}
