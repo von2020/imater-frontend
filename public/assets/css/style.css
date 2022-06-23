@@ -447,6 +447,12 @@ h1, h2, h3, h4, h5,
       .site-navbar .site-logo {
         float: left;
         position: relative; } }
+
+    @media (max-width: 400px) {
+       .site-logo {
+        margin-left: 2px;
+        float: left;
+        position: relative; } }
   .site-navbar .site-navigation.border-bottom {
     border-bottom: 1px solid white !important; }
   .site-navbar .site-navigation .site-menu {
@@ -1221,7 +1227,7 @@ h1, h2, h3, h4, h5,
       right: 0;
       bottom: 0;
       opacity: .5;
-      background: rgb(38, 36, 36); }
+      background: rgb(45, 61, 90); }
     .ftco-cover-1.overlay h1 {
       color: #fff;
       font-size: 3rem;
@@ -1249,6 +1255,30 @@ h1, h2, h3, h4, h5,
         font-weight: 700; }
         .ftco-cover-1.overlay p a:hover {
           text-decoration: none; }
+
+ @media (max-width: 500px) {
+    .ftco-cover-1.overlay h2 {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 900; }
+    .ftco-cover-1, .ftco-cover-1 .container > .row {
+      height: 50vh;
+      min-height: 480px; }
+     }
+
+  @media (max-width: 400px) {
+    .ftco-cover-1.overlay h2 {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 900; }
+   .ftco-cover-1, .ftco-cover-1 .container > .row {
+      height: 50vh;
+      min-height: 480px; }
+    .ftco-cover-1.innerpage, .ftco-cover-1.innerpage .container > .row {
+    height: 60vh;
+    min-height: 500px; }
+     }
+
 
 .owl-all .owl-dots {
   text-align: center;

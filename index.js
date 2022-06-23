@@ -75,7 +75,7 @@ app.get("/", (req, res) => {
 })
 //Defining the environment variable and server
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4000;
 
 
 const server  = app.listen(port, function() {
