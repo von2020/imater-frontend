@@ -13,7 +13,7 @@ const {
     services,
 } = request_controllers;
 
-router.get('/home',  home),
+router.get('/',  home),
 router.get('/about_us',  about),
 router.get('/blog',  blog),
 router.get('/blog_single',  blog_single),

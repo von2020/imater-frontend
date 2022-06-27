@@ -1,5 +1,11 @@
+const  {request_queries} = require('../queries/index');
+const {} = require('../utils/query_utils');
 
 
+const {
+    allServices,
+    
+}= request_queries;
 
 
 class Requests {
@@ -9,8 +15,16 @@ class Requests {
         
         
         try {
+            const {result, resbody} = await allServices();
+            if (result.statusCode == '200') {
+                const services = resbody.slice(0,6)
+                console.log('services',services)
+                res.render('home', {services})
+            } else {
+                console.log('Not getting services')
+            }
             
-                res.render('home');
+                // res.render('home');
             
         }catch(err) {
             if (err) console.error('Error', err);

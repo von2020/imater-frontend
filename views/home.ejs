@@ -81,77 +81,24 @@
         </div>
         <div class="row align-items-stretch">
           
+          
+        
+          <% services.forEach((item) => { %>
+            
           <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100"  style="background-image: url('../assets/images/coldroomequipment.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/001-renovation.svg" alt="Image" class=""> -->
-              </div>
-              <br><br><br>
-              <h3><span>Cold Room Equipment</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/cleaningservice2.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/002-shovel.svg" alt="Image" class=""> -->
-              </div>
-              <br><br><br>
-              <h3><span>Cleaning Service</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/construction2.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/003-bulldozer.svg" alt="Image" class=""> -->
-              </div>
-              <br><br><br>
-              <h3><span>Building Construction</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-
-
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/alignmentofworkspace2.jpeg')">
+            <div class="service-2 h-100" style="background-image: url('<%=item.img%>')">
               <div class="svg">
                 <!-- <img src="images/flaticon/svg/004-house-plan.svg" alt="Image" class=""> -->
               </div>
-              <br><br>
-              <h3><span>Alignment of Workspace</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
+              <br><br><br><br><br>
+              <h3 class="block"><span><%= item.title%></span></h3>
+              
             </div>
           </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/planninganddesignofofficespace.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/005-fence.svg" alt="Image" class=""> -->
-              </div>
-              <br><br>
-              <h3><span>Planning and Design of Office Space</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/plumbing services.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/006-wheelbarrow.svg" alt="Image" class=""> -->
-              </div>
-              <br><br>
-              <h3><span>Plumbing Services</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-          <div class="col-md-4 mx-auto">
-            <h5 class="line-bottom text-center"><a href="/our_services" class="nav-link">View All Services </a></h5>
-          </div>
+          
+          <% })%>
+        
+          
         </div>
       </div>
     </div>
@@ -271,7 +218,7 @@
       </div>
     </div>
 
-    <div class="site-section">
+    <!-- <div class="site-section">
       <div class="container">
         <div class="row mb-4">
 
@@ -388,7 +335,7 @@
 
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="site-section">
       <div class="container">

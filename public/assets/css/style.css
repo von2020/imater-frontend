@@ -291,6 +291,12 @@ h1, h2, h3, h4, h5,
     font-size: 16px;
     color: #fff; }
 
+  .block{
+    background-color: #fff;
+    text-align: center;
+    border-radius: 5px;
+  }
+
 .bg-text-line {
   display: inline;
   background: #000;
