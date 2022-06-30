@@ -171,13 +171,13 @@ class Requests {
             const response = resbody
             console.log("response", response)
             if (result.statusCode == '200') {
-                res.send(" '<script> alert(' Message sent successfullty to immater '); </script>' " + "<script> window.location.href='/contact_us'; </script>");
+                res.send(" '<script> alert(' Message sent successfullty to immater '); </script>' " + "<script> window.location.href='/'; </script>");
             } else {
-                res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/contact_us'; </script>");
+                res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/'; </script>");
             }
         } catch(err){
             if (err) console.log('error', err)
-            res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/contact_us'; </script>");
+            res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/'; </script>");
                 return;
         }
             
