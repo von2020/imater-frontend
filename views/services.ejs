@@ -63,75 +63,26 @@
           <h4 class="line-bottom text-center">Services </h4>
         </div>
         <div class="row align-items-stretch">
+
+          <% services.forEach((item) => { %>
+            
+            <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
+              <div class="service-2 h-100" style="background-image: url('<%=item.img%>')">
+                <div class="svg">
+                  <!-- <img src="images/flaticon/svg/004-house-plan.svg" alt="Image" class=""> -->
+                </div>
+                <br><br><br><br><br>
+                <h3 class="block"><span><%= item.title%></span></h3>
+                
+              </div>
+            </div>
+            
+            <% })%>
           
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4" >
-            <div class="service-2 h-100" style="background-image: url('../assets/images/coldroomequipment.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/001-renovation.svg" alt="Image" class=""> -->
-              </div>
-              <br><br><br>
-              <h3><span>Cold Room Equipment</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/cleaningservice2.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/002-shovel.svg" alt="Image" class=""> -->
-              </div>
-              <br><br><br>
-              <h3><span>Cleaning Service</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/construction2.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/003-bulldozer.svg" alt="Image" class=""> -->
-              </div>
-              <br><br><br>
-              <h3><span>Building Construction</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
+         
 
 
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/alignmentofworkspace2.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/004-house-plan.svg" alt="Image" class=""> -->
-              </div>
-              <br><br>
-              <h3><span>Alignment of Workspace</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/planninganddesignofofficespace.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/005-fence.svg" alt="Image" class=""> -->
-              </div>
-              <br><br>
-              <h3><span>Planning and Design of Office Space</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100" style="background-image: url('../assets/images/plumbing services.jpeg')">
-              <div class="svg">
-                <!-- <img src="images/flaticon/svg/006-wheelbarrow.svg" alt="Image" class=""> -->
-              </div>
-              <br><br>
-              <h3><span>Plumbing Services</span></h3>
-              <p>Consectetur adipisicing elit. Numquam repellendus aut labore</p>
-
-            </div>
-          </div>
+          
           
         </div>
       </div>
@@ -148,28 +99,28 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="testimonial-3">
-              <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure id accusantium similique temporibus nihil blanditiis adipisci aperiam, sapiente suscipit vero.</blockquote>
+              <blockquote>immater was a saviour, it help crash our maintenance cost by 20% and make us return to profitable within 3 months".</blockquote>
               <div class="vcard d-flex align-items-center">
                 <div class="img-wrap mr-3">
-                  <img src="../assets/images/person_1.jpg" alt="Image" class="img-fluid">
+                  <img src="../assets/images/avatar.png" alt="Image" class="img-fluid">
                 </div>
                 <div>
-                  <span class="d-block">John Smith</span>
-                  <span class="position">Client From Facebook</span>
+                  <span class="d-block">Mr Kehinde</span>
+                  <span class="position">Client From Fan Milk</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="testimonial-3">
-              <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure id accusantium similique temporibus nihil blanditiis adipisci aperiam, sapiente suscipit vero.</blockquote>
+              <blockquote>The company has good customer service and they are professionals in their job.</blockquote>
               <div class="vcard d-flex align-items-center">
                 <div class="img-wrap mr-3">
-                  <img src="../assets/images/person_2.jpg" alt="Image" class="img-fluid">
+                  <img src="../assets/images/avatar.png" alt="Image" class="img-fluid">
                 </div>
                 <div>
-                  <span class="d-block">John Smith</span>
-                  <span class="position">Client From Facebook</span>
+                  <span class="d-block">Mrs Adetutu</span>
+                  <span class="position">Client From Filma Global</span>
                 </div>
               </div>
             </div>

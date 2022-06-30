@@ -11,6 +11,8 @@ const {
     blog_single,
     contact,
     services,
+    blogPag,
+    handleContact,
 } = request_controllers;
 
 router.get('/',  home),
@@ -18,7 +20,10 @@ router.get('/about_us',  about),
 router.get('/blog',  blog),
 router.get('/blog_single',  blog_single),
 router.get('/contact_us',  contact),
-router.get('/our_services',  services)
+router.post('/contact_us',  handleContact)
+router.get('/our_services',  services),
+router.get('/blogPag',  blogPag),
+
 
 
 module.exports = router;

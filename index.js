@@ -13,6 +13,8 @@ var session = require("express-session");
 // require connect flash
 var flash = require('connect-flash');
 
+// const Pagination = require('tui-pagination');
+
 
 
 const routes = require('./routes/index');

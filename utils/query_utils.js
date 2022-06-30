@@ -127,6 +127,26 @@ static getResponse_request(url, token) {
 });
 };
 
+static getResponse_req(url) {
+  return new Promise ( (resolve, reject) => {
+
+    const options = {
+      headers: {
+        'content-Type': 'application/json',
+      },
+      url: `${baseUrl}${url}`,
+    };
+    
+    request.get(options, (error, result, resBody) => {
+      if (error) reject(error);
+      var resbody = JSON.parse(result.body);
+      console.log('resbody', resbody)
+      
+      resolve({result, resbody})
+    });
+});
+};
+
 static putResponse(query, url, token) {
   return new Promise ( (resolve, reject) => {
   
