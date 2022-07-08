@@ -13,6 +13,14 @@ var session = require("express-session");
 // require connect flash
 var flash = require('connect-flash');
 
+// require file upload
+var fileUpload = require('express-fileupload');
+
+// default options
+app.use(fileUpload());
+
+// const Joi = require('joi');
+
 // const Pagination = require('tui-pagination');
 
 
@@ -68,7 +76,7 @@ app.use(function(req, res, next) {
 
 // All the routes.
 app.use('/', routes);
-// app.use('/admin', admin_routes);
+app.use('/admin', admin_routes);
 // app.use('/test', test);
 // app.use('/api', api);
 

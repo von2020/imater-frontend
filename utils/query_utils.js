@@ -23,8 +23,10 @@ class Consumers {
           url: `${baseUrl}${url}`,
           body,
         };
+        console.log('options', options)
         request.post(options, (error, result, resBody) => {
           if (error) reject(error);
+          console.log('resbody', resbody)
           var resbody = JSON.parse(result.body);
           resolve({result, resbody})
         });
@@ -46,6 +48,36 @@ static getResponse_get(url) {
           throw new Error('ERROR 500: Internal server error')
         } else {
           var resbody = JSON.parse(result.body);
+          resolve({result, resbody})
+        }
+      });
+});
+};
+
+static getResponse_del(url, token) {
+  return new Promise ( (resolve, reject) => {
+
+      const options = {
+        headers: {
+          'content-Type': 'application/json',
+          'Authorization': `Token ${token}`
+        },
+        url: `${baseUrl}${url}`
+      };
+      request.delete(options, (error, result, resBody) => {
+        if (error) reject(error);
+        if (result.statusCode == '500') {
+          throw new Error('ERROR 500: Internal server error')
+        } else {
+        console.log(typeof(result.body))
+         if(typeof(result.body) == 'object'){
+          var resbody = result.body;
+         }
+         else{
+           console.log(result.body);
+             var resbody = JSON.parse(result.body);
+         }
+        
           resolve({result, resbody})
         }
       });
