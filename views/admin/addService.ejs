@@ -36,6 +36,11 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="../../../admin_assets/css/material-dashboard.css?v=3.0.2" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -51,53 +56,45 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Messages</h6>
+                <h6 class="text-white text-capitalize ps-3">Create Service</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0">
-                <table id="myTable" class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Sent</th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% allMessages.forEach((item) => { %>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="../../../admin_assets/img/avatar.png" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><%= item.fname %> <%= item.lname %></h6>
-                            <!-- <p class="text-xs text-secondary mb-0">john@creative-tim.com</p> -->
-                          </div>
+                <form action="/admin/manage/createService"  method="post" enctype="multipart/form-data">
+                    <div class="form-group row">
+                      <div class="col-md-6 mb-4 mb-lg-0">
+                        <input type="text" class="form-control" placeholder="title" name="title">
+                      </div>
+                      <div class="col-md-6">
+                        <input id="upload-input" type="file" class="form-control" accept="jpg, jpeg, png" onchange="uploadImage()" placeholder="image uri" name="file">
+                        <span id="uploadStatus" style="color: green;"></span>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" placeholder="image url" name="image">
                         </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0"><%= item.email %></p>
-                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
-                      </td>
-                      
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><%= item.createdAt.slice(0,10) %></span>
-                      </td>
-                      <td class="align-middle">
-                        <a href="/admin/manage/view_message?id=<%=item._id%>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          View
-                        </a>
-                      </td>
-                    </tr>
-                    <% })%>
-                  </tbody>
-                </table>
-              </div>
+                      </div>
+
+                    <!-- <div class="form-group row">
+                      <div class="col-md-12">
+                        <input type="text" class="form-control" placeholder="categories" name="categories">
+                      </div>
+                    </div> -->
+      
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <textarea class="form-control" placeholder="Description." cols="30" rows="10" name="description"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6 mr-auto">
+                        <button class="btn-lg" style="background-color: rgb(12, 12, 227); color:white;" type="submit">Save</button>
+                        <!-- <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Send Message" name="message"> -->
+                      </div>
+                    </div>
+                  </form>
             </div>
           </div>
         </div>
@@ -182,7 +179,9 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+  <script src="../../../assets/js/main.js"></script>
+  <script src="../../../assets/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="../../../admin_assets/js/core/popper.min.js"></script>
   <script src="../../../admin_assets/js/core/bootstrap.min.js"></script>
   <script src="../../../admin_assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -207,6 +206,75 @@
     $('#myTable').DataTable();
 } );
   </script>
+
+<script>
+    function uploadImage() {
+
+        // $('#uploadStatus').text("uploading file, processing...");
+        // show that something is loading
+        $('#uploadStatus').html("<b>please wait...<img src='https://media.giphy.com/media/y1ZBcOGOOtlpC/giphy.gif' width='30px' /></b>");
+
+        var data = new FormData();
+
+        var theFileType;
+
+        $.each($('#upload-input')[0].files, function(i, file) {
+            console.log('file', file)
+
+            data.append('file', file);
+
+            console.log("file type: ", file.type);
+
+            //  get the file type
+            theFileType = file.type;
+        });
+        console.log('filetype', theFileType)
+        console.log('dataaaaaaaaaaa', data)
+        //  validate type
+        if (theFileType == "image/jpg" || theFileType == "image/jpeg" || theFileType == "image/png") {
+
+            //  console.log("file: ", $("#upload-input").val());
+
+                // use ".split("\\").pop()" to the fake path attached to it.
+                var file_name = $("#upload-input").val().split("\\").pop();
+                console.log("file_name: ", file_name);
+
+                // save the file name into sessionStorage
+                sessionStorage.setItem("uploadedFileNameOtherProCert", file_name);
+    
+                $.ajax({
+                    url: '/admin/manage/uploadServiceImage',
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    method: 'POST',
+                    type: 'POST', // For jQuery < 1.9
+                    success: function(data){
+                        // alert(data);
+                        console.log(data);
+                        
+                            if (data.success == true) {
+                                $('#uploadStatus').text(data.result.url);
+                                $('#addMoreEH').show();
+                        } else {
+                                $('#uploadStatus').text(data.status);
+                        }
+                        
+                    }
+                });
+        }
+        else{
+        
+            console.log("the file type is not supported, pdf only");
+            $('#uploadStatus').text("the file type is not supported, pdf only");
+            $('#addMoreEH').hide();
+                
+            }
+
+
+    }
+    </script>
 </body>
 
 </html>

@@ -52,6 +52,7 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3">Services</h6>
+                <a href="/admin/manage/createService"><img style="background-color: aliceblue; float: right; width: 25px" src="../../../admin_assets/img/plusIcon.png" alt="Logo" class=""></a>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -63,6 +64,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Categories</th>
                       
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Created</th>
+                      <th class="text-secondary opacity-7"></th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -91,6 +93,11 @@
                       <td class="align-middle">
                         <a href="/admin/manage/view_service?id=<%=item._id%>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           View
+                        </a>
+                      </td>
+                      <td class="align-middle">
+                        <a href="/admin/manage/delete_service?id=<%=item._id%>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          Delete
                         </a>
                       </td>
                     </tr>

@@ -16,6 +16,11 @@ const {
     view_message,
     createPost,
     addPostImage,
+    handlePost,
+    delete_post,
+    handleService,
+    addServiceImage,
+    delete_service,
     createService
 } = admin_manage_controllers;
 
@@ -32,8 +37,12 @@ router.get('/view_message',adminCheckSession,  view_message);
 
 router.get('/createPost',adminCheckSession,  createPost);
 router.post('/uploadPostImage',adminCheckSession,  addPostImage);
+router.post('/createPost',adminCheckSession,  handlePost);
+router.get('/delete_post',adminCheckSession,  delete_post);
 
 router.get('/createService',adminCheckSession,  createService);
-
+router.post('/uploadServiceImage',adminCheckSession,  addServiceImage);
+router.post('/createService',adminCheckSession,  handleService);
+router.get('/delete_service',adminCheckSession,  delete_service);
 
 module.exports = router;

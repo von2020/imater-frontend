@@ -126,8 +126,10 @@ static getResponse_getT(url, token) {
           url: `${baseUrl}${url}`,
           body,
         };
+
         request.post(options, (error, result, resBody) => {
           console.log('error:',error);
+          
           console.log('statusCode:', result.statusCode);
           if (error) reject(error);
           if (result.statusCode == '500') {

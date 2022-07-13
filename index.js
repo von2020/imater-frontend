@@ -13,12 +13,22 @@ var session = require("express-session");
 // require connect flash
 var flash = require('connect-flash');
 
+const cloudinary = require('cloudinary').v2
+
 // require file upload
 var fileUpload = require('express-fileupload');
 
 // default options
-app.use(fileUpload());
+app.use(fileUpload({
+  useTempFiles: true
+}));
 
+
+cloudinary.config({
+  cloud_name: 'dxzrwvflo',
+  api_key: '248583444414373',
+  api_secret: 'C1i08PVkjl0ht6vRxGXvq5GeUoc'
+})
 // const Joi = require('joi');
 
 // const Pagination = require('tui-pagination');

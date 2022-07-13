@@ -60,18 +60,23 @@
               </div>
             </div>
             <div class="card-body px-0 pb-2">
-                <form action="/contact_us"  method="post">
+                <form action="/admin/manage/createPost"  method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                       <div class="col-md-6 mb-4 mb-lg-0">
                         <input type="text" class="form-control" placeholder="title" name="title">
                       </div>
                       <div class="col-md-6">
-                        <input id="upload-input" type="file" class="form-control" accept="jpg, jpeg, png" onchange="uploadImage()" placeholder="image uri" name="image">
+                        <input id="upload-input" type="file" class="form-control" accept="jpg, jpeg, png" onchange="uploadImage()" placeholder="image uri" name="file">
                         <span id="uploadStatus" style="color: green;"></span>
                       </div>
                     </div>
                     
-      
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" placeholder="image url" name="image">
+                        </div>
+                      </div>
+
                     <div class="form-group row">
                       <div class="col-md-12">
                         <input type="text" class="form-control" placeholder="categories" name="categories">
@@ -215,7 +220,7 @@
 
         $.each($('#upload-input')[0].files, function(i, file) {
             console.log('file', file)
-            
+
             data.append('file', file);
 
             console.log("file type: ", file.type);
@@ -249,8 +254,8 @@
                         // alert(data);
                         console.log(data);
                         
-                            if (data.status == "successfully uploaded.") {
-                                $('#uploadStatus').text(data.status);
+                            if (data.success == true) {
+                                $('#uploadStatus').text(data.result.url);
                                 $('#addMoreEH').show();
                         } else {
                                 $('#uploadStatus').text(data.status);

@@ -1,10 +1,24 @@
 const express = require('express');
+const cloudinary = require('cloudinary').v2
+const app = express();
+const fileUpload = require('express-fileupload');
+
+app.use(fileUpload({
+    useTempFiles: true
+}));
+
+cloudinary.config({
+    cloud_name: 'dxzrwvflo',
+    api_key: '248583444414373',
+    api_secret: 'C1i08PVkjl0ht6vRxGXvq5GeUoc'
+})
 const router = express.Router();
 const validateLogin = require('../../validation/loginSchema');
 // requrie the query from the query modules
 const {auth_queries} = require('../queries');
 
 const {admin_manage_queries} = require('../queries');
+
 
 
 const {
@@ -17,6 +31,8 @@ const {
     viewSubscriber,
     addPostImage,
     addService,
+    deleteService,
+    deletePost,
     addPost
 
 } = admin_manage_queries;
@@ -151,6 +167,30 @@ class Requests {
 
     };
 
+    static async delete_post (req, res) {
+        var userDetails = req.session.userDetails
+        const token = userDetails.accessToken
+        const id = req.query.id
+        console.log('id', id)
+        console.log('token', token)
+        console.log('userDetails', userDetails)
+        
+        
+        try {
+            const {result, resbody} = await deletePost(id,token);
+            const vPost = resbody;
+            console.log('vPost', vPost)
+            
+            res.send(" '<script> alert(' Blog Post Deleted Successfullt '); </script>' " + "<script> window.location.href='/admin/manage/posts'; </script>");
+            
+        }catch(err) {
+            if (err) console.error('Error', err);
+            res.send(" '<script> alert(' Network Error '); </script>' ");
+                return;
+        }
+
+    };
+
     static async admin_messages (req, res) {
         var userDetails = req.session.userDetails
         const token = userDetails.accessToken
@@ -218,29 +258,65 @@ class Requests {
 
     static async addPostImage (req, res) {
         var userDetails = req.session.userDetails
-        const token = userDetails.accessToken
+        // const token = userDetails.accessToken
         console.log('files', req.files)
-        if (req.files) {
+    
+    try{
         
-            const data = req.files.file;
-            
-            console.log('file', data)
-            
-              try {
-                const subs = await addPostImage(data,token);
-                res.json( subs.resbody);
-            } catch (err) {
-                if (err) console.log('error', err)
-                
-                res.status(503).json(err);
-                return;
-            }
-            
-        }
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).send('No files were uploaded.');
+          }
+        const file = req.files.file;
+        console.log('file', file)
+        console.log('heyyyy',file.tempFilePath )
+        cloudinary.uploader.upload(file.tempFilePath, function(err, result){
+            console.log('error', err)
+            console.log('result', result)
+            res.send({
+                success: true,
+                result
+            })
+        });
+        
+         
+    } catch (err){
+        res.status(500).json(err); 
+    }
+
 
     };
 
-    
+    static async handlePost (req, res) {
+        var userDetails = req.session.userDetails
+        const token = userDetails.accessToken
+     
+        const query = {
+            title: req.body.title,
+            desc: req.body.description,
+            img: req.body.image,
+            categories: req.body.categories,
+                    
+        }
+
+        console.log('query', query)
+        
+        try{
+            
+            const {result, resbody} = await addPost(query, token);
+            const response = resbody
+            console.log("response", response)
+            if (result.statusCode == '200') {
+                res.send(" '<script> alert(' Blog Post Uploaded Successfullt '); </script>' " + "<script> window.location.href='/admin/manage/posts'; </script>");
+            } else {
+                res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/admin/manage/createPost'; </script>");
+            }
+        } catch(err){
+            if (err) console.log('error', err)
+            res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/admin/manage/createPost'; </script>");
+                return;
+        }
+            
+    }; 
 
     static async createService (req, res) {
         
@@ -253,6 +329,92 @@ class Requests {
         try {
             
                 res.render('admin/addService', {userDetails});
+            
+        }catch(err) {
+            if (err) console.error('Error', err);
+            res.send(" '<script> alert(' Network Error '); </script>' ");
+                return;
+        }
+
+    };
+
+    static async addServiceImage (req, res) {
+        var userDetails = req.session.userDetails
+        // const token = userDetails.accessToken
+        console.log('files', req.files)
+    
+    try{
+        
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).send('No files were uploaded.');
+          }
+        const file = req.files.file;
+        console.log('file', file)
+        console.log('heyyyy',file.tempFilePath )
+        cloudinary.uploader.upload(file.tempFilePath, function(err, result){
+            console.log('error', err)
+            console.log('result', result)
+            res.send({
+                success: true,
+                result
+            })
+        });
+        
+         
+    } catch (err){
+        res.status(500).json(err); 
+    }
+
+
+    };
+
+    static async handleService (req, res) {
+        var userDetails = req.session.userDetails
+        const token = userDetails.accessToken
+     
+        const query = {
+            title: req.body.title,
+            desc: req.body.description,
+            img: req.body.image,
+            categories: req.body.categories,
+                    
+        }
+
+        console.log('query', query)
+        
+        try{
+            
+            const {result, resbody} = await addService(query, token);
+            const response = resbody
+            console.log("response", response)
+            if (result.statusCode == '200') {
+                res.send(" '<script> alert(' Service Uploaded Successfullt '); </script>' " + "<script> window.location.href='/admin/manage/services'; </script>");
+            } else {
+                res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/admin/manage/createService'; </script>");
+            }
+        } catch(err){
+            if (err) console.log('error', err)
+            res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/admin/manage/createService'; </script>");
+                return;
+        }
+            
+    }; 
+
+    static async delete_service (req, res) {
+        var userDetails = req.session.userDetails
+        const token = userDetails.accessToken
+        const id = req.query.id
+        console.log('id', id)
+        console.log('token', token)
+        console.log('userDetails', userDetails)
+        
+        
+        try {
+            const {result, resbody} = await deleteService(id,token);
+            const vPost = resbody;
+            console.log('vPost', vPost)
+            
+            res.send(" '<script> alert(' Service Deleted Successfullt '); </script>' " + "<script> window.location.href='/admin/manage/services'; </script>");
             
         }catch(err) {
             if (err) console.error('Error', err);

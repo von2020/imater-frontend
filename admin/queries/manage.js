@@ -40,6 +40,8 @@ class admin_manage_queries {
     };
 
     static async addPostImage(query, token) {
+        console.log('query', query)
+        console.log('token', token)
         const url = 'posts/image';
         try {
             const { result, resbody } = await postResponse_request(query, url, token)
@@ -74,6 +76,17 @@ class admin_manage_queries {
 
     static async deletePost(id, token) {
         const url = `posts/${id}`;
+        try {
+            const { result, resbody } = await getResponse_del(url, token)
+            return { result, resbody }
+
+        } catch (err) {
+            if (err) console.log('error', err)
+        }
+    };
+
+    static async deleteService(id, token) {
+        const url = `services/${id}`;
         try {
             const { result, resbody } = await getResponse_del(url, token)
             return { result, resbody }
