@@ -159,6 +159,7 @@ class Requests {
             fname: req.body.fname,
             lname: req.body.lname,
             email: req.body.email,
+            phone: req.body.phone,
             message: req.body.message,
                     
         }
