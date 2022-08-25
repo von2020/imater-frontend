@@ -2,7 +2,7 @@ const {getResponse, getResponse_request, postResponse_request, putResponse, post
 
 class request_queries {
 
-    static async allServices(token) {
+    static async allServices() {
         const url = 'services';
         try {
             const {result, resbody} = await getResponse_get(url)
@@ -10,6 +10,17 @@ class request_queries {
             
         }catch(err){
             if (err) console.log('login error', err)
+        }
+    };
+
+    static async viewService(id) {
+        const url = `services/find/${id}`;
+        try {
+            const { result, resbody } = await getResponse_request(url)
+            return { result, resbody }
+
+        } catch (err) {
+            if (err) console.log('error', err)
         }
     };
 

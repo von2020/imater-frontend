@@ -4,6 +4,7 @@ const {resMessageRedirect} = require('../utils/reusables');
 
 const {
     allServices,
+    viewService,
     allPosts,
     viewPosts,
     allPostsPag,
@@ -43,6 +44,28 @@ class Requests {
 
     };
 
+    static async view_services (req, res) {
+        
+        const id = req.query.id
+        console.log('id', id)
+        
+        
+        
+        try {
+            const {result, resbody} = await viewService(id);
+            const materials = resbody;
+            console.log('vServices', materials)
+            
+            res.render('viewServices', {materials});
+            
+        }catch(err) {
+            if (err) console.error('Error', err);
+            res.send(" '<script> alert(' Network Error '); </script>' ");
+                return;
+        }
+
+    };
+
     static async about (req, res) {
         
         
@@ -62,16 +85,16 @@ class Requests {
 
     static async blog (req, res) {
         console.log('hereeeee')
-        const page = req.query.page;
-        const limit = req.query.limit;
+        // const page = req.query.page;
+        // const limit = req.query.limit;
         
         try {
-            const {result, resbody} = await allPostsPag(page, limit);
+            const {result, resbody} = await allPosts();
             
             if (result.statusCode == '200') {
                 const posts = resbody
                 console.log('posts',posts)
-                res.render('blog', {posts, page, limit})
+                res.render('blog', {posts})
             } else {
                 console.log('Not getting posts')
             }
@@ -185,18 +208,19 @@ class Requests {
     };
 
     static async services (req, res) {
-        
-        
+        console.log('hereeeee')
+        // const page = req.query.page;
+        // const limit = req.query.limit;
         
         try {
-
             const {result, resbody} = await allServices();
+            
             if (result.statusCode == '200') {
-                const services = resbody
-                console.log('services',services)
-                res.render('services', {services})
-            } else {
-                console.log('Not getting services')
+                const posts = resbody
+                console.log('services', posts)
+                res.render('services', {posts})
+            } else { 
+                console.log('Not getting services') 
             }
             
                 // res.render('services');

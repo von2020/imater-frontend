@@ -74,6 +74,17 @@ class admin_manage_queries {
         }
     };
 
+    static async updatePost(id, query, token) {
+        const url = `posts/${id}`;
+        try {
+            const { result, resbody } = await putResponse(query, url, token)
+            return { result, resbody }
+
+        } catch (err) {
+            if (err) console.log('error', err)
+        }
+    };
+
     static async deletePost(id, token) {
         const url = `posts/${id}`;
         try {

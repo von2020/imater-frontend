@@ -51,7 +51,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Blog Posts</h6>
+                <h6 class="text-white text-capitalize ps-3">Updates</h6>
                 <a href="/admin/manage/createPost"><img style="background-color: aliceblue; float: right; width: 25px" src="../../../admin_assets/img/plusIcon.png" alt="Logo" class=""></a>
               </div>
             </div>
@@ -61,7 +61,7 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Categories</th>
+                      <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Categories</th> -->
                       
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Created</th>
                       <th class="text-secondary opacity-7"></th>
@@ -82,10 +82,10 @@
                           </div>
                         </div>
                       </td>
-                      <td>
+                      <!-- <td>
                         <p class="text-xs font-weight-bold mb-0"><%= item.categories %></p>
-                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
-                      </td>
+                        
+                      </td> -->
                       
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"><%= item.createdAt.slice(0,10) %></span>
@@ -93,6 +93,11 @@
                       <td class="align-middle">
                         <a href="/admin/manage/view_post?id=<%=item._id%>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           View
+                        </a>
+                      </td>
+                      <td class="align-middle">
+                        <a href="/admin/manage/edit_single?id=<%=item._id%>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                         Edit
                         </a>
                       </td>
                       <td class="align-middle">

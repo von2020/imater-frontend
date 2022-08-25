@@ -48,7 +48,7 @@
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
-              <h1>Our Services</h1>
+              <h1>Our Blog</h1>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
           </div>
@@ -58,82 +58,80 @@
 
     
     
-    <div class="site-section" style="background-color: #dedffe;">
-      <div class="container">
-        <div class="col-md-4 mx-auto">
-          <h4 class="line-bottom text-center">Services </h4>
-        </div>
-        <div class="row align-items-stretch">
-          <% services.forEach((item) => { %>
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="post-entry-1 h-100">
-                <a>
-                  <img src="<%=item.img%>" alt="Image"
-                   class="img-fluid">
-                </a>
-                <div class="post-entry-1-contents">
-                  
-                  <h2><a><%= item.title%></a></h2>
-                  
-                </div>
-              </div>
-            </div>
-            <% })%>
-
-          
-          
-         
-
-
-          
-          
-        </div>
-      </div>
-    </div>
-
-    
     <div class="site-section bg-light">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-4 mx-auto">
-            <h2 class="line-bottom text-center">Testimonials</h2>
+            <h2 class="line-bottom text-center" style="font-weight: bold; font-size: bold; "><strong>All Services</strong></h2>
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6">
-            <div class="testimonial-3">
-              <blockquote>immater was a saviour, it help crash our maintenance cost by 20% and make us return to profitable within 3 months".</blockquote>
-              <div class="vcard d-flex align-items-center">
-                <div class="img-wrap mr-3">
-                  <img src="../assets/images/avatar.png" alt="Image" class="img-fluid">
-                </div>
-                <div>
-                  <span class="d-block">Mr Kehinde</span>
-                  <span class="position">Client From Fan Milk</span>
-                </div>
+          
+          <% posts.forEach((item) => { %>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <!-- card -->
+
+            <div class="card" style="width: 18rem; height: 18rem; border-radius: 1rem;">
+              <a href="/service_single?id=<%=item._id%>">
+              <img class="card-img-top" src="<%= item.img%>" style="border-top-left-radius:1rem; border-top-right-radius:1rem;" alt="Card image cap">
+            </a>
+              <div class="card-body">
+                <a href="/service_single?id=<%=item._id%>"><h5 class="card-title"><%= item.title%></h5></a>
+                <!-- <p class="card-text"><%= item.desc.slice(0,25)%></p> -->
+                <!-- <a href="/service_single?id=<%=item._id%>" class="btn btn-primary">read more</a> -->
               </div>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="testimonial-3">
-              <blockquote>The company has good customer service and they are professionals in their job.</blockquote>
-              <div class="vcard d-flex align-items-center">
-                <div class="img-wrap mr-3">
-                  <img src="../assets/images/avatar.png" alt="Image" class="img-fluid">
-                </div>
-                <div>
-                  <span class="d-block">Mrs Adetutu</span>
-                  <span class="position">Client From Filma Global</span>
-                </div>
+
+            <!-- end card -->
+            <!-- <div class="post-entry-1 h-100">
+              <a href="/service_single?id=<%=item._id%>">
+                <img src="<%= item.img%>" alt="Image"
+                 class="img-fluid">
+              </a>
+              <div class="post-entry-1-contents">
+                
+                <h2><a href="/service_single?id=<%=item._id%>"><%= item.title%></a></h2>
+                <span class="meta d-inline-block mb-3"><%= item.createdAt.slice(0,10)%> <span class="mx-2">by</span> <a href="#">Admin</a></span>
+                <p><%= item.desc.slice(0,30)%></p>
               </div>
-            </div>
+            </div> -->
           </div>
+          <% })%>
+          <%if (posts.next != null && posts.previous != null) { %>
+          <input id="page" type="hidden" class="form-control" value="<%= posts.next.page %>">
+          <input id="limit" type="hidden" class="form-control" value="<%= posts.next.limit %>">
+          <input id="page2" type="hidden" class="form-control" value="<%= posts.previous.page %>">
+          <input id="limit2" type="hidden" class="form-control" value="<%= posts.previous.limit %>">
+          <% } else if (posts.next == null && posts.previous != null) { %>
+          <input id="page2" type="hidden" class="form-control" value="<%= posts.previous.page %>">
+          <input id="limit2" type="hidden" class="form-control" value="<%= posts.previous.limit %>">
+          <% } else if (posts.next != null && posts.previous == null) { %>
+          <input id="page" type="hidden" class="form-control" value="<%= posts.next.page %>">
+          <input id="limit" type="hidden" class="form-control" value="<%= posts.next.limit %>">
+          <% } else { %>
+            <% } %>
+          <div class="col-12 mt-5 text-center">
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item">
+                  <button onclick="decrease()" class="page-link" href="">Previous</button>
+                </li>
+
+                
+                
+                <li class="page-item">
+                  <button onclick="increase()" class="page-link" href="#">Next</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
         </div>
       </div>
     </div>
 
     
-
+    
     <%- include('./bars/footer') %>
 
     </div>
@@ -151,6 +149,58 @@
     <script src="../assets/js/aos.js"></script>
 
     <script src="../assets/js/main.js"></script>
+
+    <script>
+
+      
+
+
+      function increase() {
+        
+        if(document.getElementById('page').value != null){
+        var page = document.getElementById('page').value;
+        var limit = document.getElementById('limit').value;
+        console.log("page", page)
+        console.log('limit', limit)
+        // alert(page)
+        window.location.href = `/our_services?page=${page}&limit=${limit}`
+        
+      }
+
+    }   
+                            
+                  
+
+
+        
+      //   $.get(`/blogPag?page=${page}&limit=${limit}`, function (data, status) {
+          
+      //           console.log('data',data)
+      //           console.log('status',status)
+      //           if (status == "success") {
+      //               console.log('data', data)
+      //               window.location.href = 'http://www.example.com'
+                    
+
+      //           } else {
+      //               alert("try again or contact the admin.")
+      //             }
+      //         });
+      // }
+
+      function decrease() {
+        if(document.getElementById('page2').value != null){
+        var page = document.getElementById('page2').value;
+        var limit = document.getElementById('limit2').value;
+        console.log("page", page)
+        console.log('limit', limit)
+        // alert(page)
+        window.location.href = `/our_services?page=${page}&limit=${limit}`
+        
+      }
+
+}
+    </script>
 
   </body>
 

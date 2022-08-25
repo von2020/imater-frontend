@@ -63,29 +63,29 @@
                 <form action="/admin/manage/createService"  method="post" enctype="multipart/form-data">
                     <div class="form-group row">
                       <div class="col-md-6 mb-4 mb-lg-0">
-                        <input type="text" class="form-control" placeholder="title" name="title">
+                        <input type="text" class="form-control" placeholder="title" name="title" value="<%= materials.title %>">
                       </div>
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <input id="upload-input" type="file" class="form-control" accept="jpg, jpeg, png" onchange="uploadImage()" placeholder="image uri" name="file">
                         <span id="uploadStatus" style="color: green;"></span>
-                      </div>
+                      </div> -->
                     </div>
                     
                     <div class="form-group row">
                         <div class="col-md-12">
-                          <input type="text" class="form-control" placeholder="image url" name="image">
+                          <input type="text" class="form-control" name="image" value="<%= materials.img %>" readonly>
                         </div>
                       </div>
 
-                    <!-- <div class="form-group row">
+                    <div class="form-group row">
                       <div class="col-md-12">
-                        <input type="text" class="form-control" placeholder="categories" name="categories">
+                        <input type="hidden" class="form-control" value="<%= id %>" name="id">
                       </div>
-                    </div> -->
+                    </div>
       
                     <div class="form-group row">
                       <div class="col-md-12">
-                        <textarea class="form-control" placeholder="Description." cols="30" rows="10" name="description"></textarea>
+                        <textarea class="form-control"  cols="30" rows="10" name="description" value="<%= materials.desc %>"></textarea>
                       </div>
                     </div>
                     <div class="form-group row">

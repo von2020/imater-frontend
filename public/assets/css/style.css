@@ -1228,14 +1228,24 @@ h1, h2, h3, h4, h5,
   .ftco-cover-1, .ftco-cover-1 .container > .row {
     height: 100vh;
     min-height: 670px; }
+    .ftco-cover-1, .ftco-cover-1 .container > .row > h2 {
+      font-size: 50px;
+      }
   .ftco-cover-1.innerpage, .ftco-cover-1.innerpage .container > .row {
     height: 90vh;
     min-height: 700px; }
   .ftco-cover-1 > .container {
     position: relative; }
-  .ftco-cover-1.overlay {
-    position: relative; }
-    .ftco-cover-1.overlay:before {
+  .ftco-cover-1.overlay.slide {
+    position: absolute;
+   }
+    .slide{
+      position: absolute;
+      top:0;
+      inset: 0;
+      opacity: 0;
+    }
+    .ftco-cover-1.overlay.slide:before {
       content: "";
       position: absolute;
       top: 0;
@@ -1273,6 +1283,7 @@ h1, h2, h3, h4, h5,
           text-decoration: none; }
 
  @media (max-width: 500px) {
+   
     .ftco-cover-1.overlay h2 {
       color: #fff;
       font-size: 1.5rem;
@@ -1280,6 +1291,11 @@ h1, h2, h3, h4, h5,
     .ftco-cover-1, .ftco-cover-1 .container > .row {
       height: 50vh;
       min-height: 480px; }
+      .carousel{
+        width: 100vw;
+        height: 65vh !important;
+        position:relative;
+      }
      }
 
   @media (max-width: 400px) {
@@ -1293,7 +1309,14 @@ h1, h2, h3, h4, h5,
     .ftco-cover-1.innerpage, .ftco-cover-1.innerpage .container > .row {
     height: 60vh;
     min-height: 500px; }
+    .carousel{
+      width: 100vw;
+      height: 65vh !important;
+      position:relative;
+    }
      }
+
+
 
 
 .owl-all .owl-dots {
@@ -1422,6 +1445,56 @@ h1, h2, h3, h4, h5,
 
 .testimonial-1 p {
   font-size: 1.5rem; }
+
+  .carousel{
+    width: 100vw;
+    height: 100vh;
+    position:relative;
+  }
+
+  .carousel > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+
+  .slide[data-active]{
+    opacity: 1;
+  }
+
+  .carousel-button{
+    position:absolute;
+    z-index: 2;
+    background: none;
+    border:none;
+    font-size: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(255, 255, 255, .5);
+    cursor: pointer;
+    border-radius: .25rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, .1);
+  }
+
+  .carousel-button:hover,
+  .carousel-button:focus {
+    color: white;
+    background-color: rgba(0, 0, 0, .2);
+  }
+   
+  .carousel-button:focus {
+    outline: 1px solid black;
+  }
+
+  .carousel-button.prev {
+    left: 1rem;
+  }
+
+  .carousel-button.next {
+    right: 1rem;
+  }
 
 .section-4 {
   border-top: 1px solid #efefef; }

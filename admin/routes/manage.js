@@ -17,11 +17,14 @@ const {
     createPost,
     addPostImage,
     handlePost,
+    blog_single,
+    handlePostUpdate,
     delete_post,
     handleService,
     addServiceImage,
     delete_service,
-    createService
+    createService,
+    
 } = admin_manage_controllers;
 
 
@@ -38,6 +41,8 @@ router.get('/view_message',adminCheckSession,  view_message);
 router.get('/createPost',adminCheckSession,  createPost);
 router.post('/uploadPostImage',adminCheckSession,  addPostImage);
 router.post('/createPost',adminCheckSession,  handlePost);
+router.get('/edit_single',adminCheckSession,  blog_single);
+router.post('/edit_single',adminCheckSession,  handlePostUpdate);
 router.get('/delete_post',adminCheckSession,  delete_post);
 
 router.get('/createService',adminCheckSession,  createService);

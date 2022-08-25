@@ -28,6 +28,7 @@ const {
     getMessages,
     viewService,
     viewPost,
+    updatePost,
     viewSubscriber,
     addPostImage,
     addService,
@@ -181,7 +182,7 @@ class Requests {
             const vPost = resbody;
             console.log('vPost', vPost)
             
-            res.send(" '<script> alert(' Blog Post Deleted Successfullt '); </script>' " + "<script> window.location.href='/admin/manage/posts'; </script>");
+            res.send(" '<script> alert(' Service Deleted Successfullt '); </script>' " + "<script> window.location.href='/admin/manage/service_posts'; </script>");
             
         }catch(err) {
             if (err) console.error('Error', err);
@@ -306,13 +307,72 @@ class Requests {
             const response = resbody
             console.log("response", response)
             if (result.statusCode == '200') {
-                res.send(" '<script> alert(' Blog Post Uploaded Successfullt '); </script>' " + "<script> window.location.href='/admin/manage/posts'; </script>");
+                res.send(" '<script> alert(' Update Added Successfully '); </script>' " + "<script> window.location.href='/admin/manage/posts'; </script>");
             } else {
                 res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/admin/manage/createPost'; </script>");
             }
         } catch(err){
             if (err) console.log('error', err)
             res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/admin/manage/createPost'; </script>");
+                return;
+        }
+            
+    }; 
+
+    static async blog_single (req, res) {
+    var userDetails = req.session.userDetails
+        const token = userDetails.accessToken
+        const id = req.query.id;
+        console.log('id', id)
+        try {
+            const {result, resbody} = await viewPost(id);
+            const materials = resbody
+            
+            console.log('materials', materials)
+            if (result.statusCode == 200) {
+                res.render('admin/addService', {materials, userDetails, id});
+            } else if (result.statusCode == 401){
+                req.flash('error_msg', resbody.detail);
+                res.redirect('/admin/dashboard')
+            
+                // res.render('blog_single');
+            } 
+        }catch(err) {
+            if (err) console.error('Error', err);
+            res.send(" '<script> alert(' Network Error '); </script>' ");
+                return;
+        }
+
+    };
+
+    static async handlePostUpdate (req, res) {
+        var userDetails = req.session.userDetails
+        const token = userDetails.accessToken
+        const id = req.body.id
+     
+        const query = {
+            title: req.body.title,
+            desc: req.body.description,
+            img: req.body.image,
+            categories: req.body.categories,
+                    
+        }
+
+        console.log('query', query)
+        
+        try{
+            
+            const {result, resbody} = await updatePost(id, query, token);
+            const response = resbody
+            console.log("response", response)
+            if (result.statusCode == '200') {
+                res.send(" '<script> alert(' Service Updated Successfully '); </script>' " + "<script> window.location.href='/admin/manage/service_posts'; </script>");
+            } else {
+                res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/admin/manage/blog_single'; </script>");
+            }
+        } catch(err){
+            if (err) console.log('error', err)
+            res.send(" '<script> alert(' Network Error '); </script>' " + "<script> window.location.href='/admin/manage/blog_single'; </script>");
                 return;
         }
             
