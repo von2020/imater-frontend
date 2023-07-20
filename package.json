@@ -4,7 +4,7 @@
   "description": "a business site",
   "main": "index.js",
   "engines": {
-    "node": "14.17.3"
+    "node": "18.x"
   },
   "scripts": {
     "start": "node index.js",
