@@ -44,6 +44,7 @@ static getResponse_get(url) {
       };
       request.get(options, (error, result, resBody) => {
         if (error) reject(error);
+        console.log('result', result)
         if (result.statusCode == '500') {
           throw new Error('ERROR 500: Internal server error')
         } else {
