@@ -1,24 +1,15 @@
-//require the express npm package
 const express = require('express');
-//require the config module
 const config = require('config')
-//use the express package
 const app = express();
-//requrie the path module
 const path = require('path')
-// Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 var bodyParser = require("body-parser");
-// require express-session
 var session = require("express-session");
-// require connect flash
 var flash = require('connect-flash');
 
 const cloudinary = require('cloudinary').v2
 
-// require file upload
 var fileUpload = require('express-fileupload');
 
-// default options
 app.use(fileUpload({
   useTempFiles: true
 }));
@@ -29,46 +20,31 @@ cloudinary.config({
   api_key: '248583444414373',
   api_secret: 'C1i08PVkjl0ht6vRxGXvq5GeUoc'
 })
-// const Joi = require('joi');
 
-// const Pagination = require('tui-pagination');
 
 
 
 const routes = require('./routes/index');
 const admin_routes = require('./admin/routes/index');
 const test = require('./test');
-// const api = require('./admin/routes/api');
 
-// Terminate the node process if the req.session is not working
-
-// if(!config.get('sessionPrivatekey')) {
-//     console.log('you need to store your environment variable')
-//     throw new Error('The sessionrivatekey has not been set')
-// };
-// set up the view engine
 app.set("view engine", "ejs");
 
-// for public content
 app.use(express.static(path.join(__dirname) + "/public"));
-// parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded());
+
 app.use(express.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}))
-// parse application/json
-// app.use(bodyParser.json({limit: "50mb"}));
+
 app.use(express.json({limit: "50mb"}))
 
 
 
 
-// Initialise the sessions middleware
-//app.set('trust proxy', 1) // trust first proxy
+
 app.use(session({
-  secret: 'shhh',//config.get('sessionPrivatekey'), // this is stored in an environment variable not yet because we are still developing want people to be able to see what i am doing.
-  resave: true, // this is set to true for some reason i dont really understand
+  secret: 'shhh',
+  resave: true, 
   saveUninitialized: true,
   cookie: { maxAge: 24*60*60*1000 },
-  // cookie: { secure: true } //  why is this not included 
 }));
 
 // Connect flash
@@ -87,8 +63,7 @@ app.use(function(req, res, next) {
 // All the routes.
 app.use('/', routes);
 app.use('/admin', admin_routes);
-// app.use('/test', test);
-// app.use('/api', api);
+
 
 app.get("/", (req, res) => {
     res.status(200).send({message: "Welcome to Immater"});

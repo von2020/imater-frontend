@@ -85,15 +85,13 @@ class Requests {
 
     static async blog (req, res) {
         console.log('hereeeee')
-        // const page = req.query.page;
-        // const limit = req.query.limit;
+        
         
         try {
             const {result, resbody} = await allPosts();
             
             if (result.statusCode == '200') {
                 const posts = resbody
-                console.log('posts',posts)
                 res.render('blog', {posts})
             } else {
                 console.log('Not getting posts')
@@ -110,7 +108,6 @@ class Requests {
     };
 
     static async blogPag (req, res) {
-        console.log('hereeeee')
         const page = req.query.page;
         const limit = req.query.limit;
         
@@ -119,7 +116,7 @@ class Requests {
             
             if (result.statusCode == '200') {
                 const posts = resbody
-                console.log('posts',posts)
+
                 return res.send(posts);
             } else {
                 console.log('Not getting posts')
